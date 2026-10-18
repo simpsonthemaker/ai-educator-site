@@ -84,6 +84,16 @@
   }
   .hero-ctas{display:flex;gap:14px;justify-content:center;margin-bottom:64px;flex-wrap:wrap;}
 
+  .inside-edit{max-width:960px;margin:0 auto 56px;text-align:left;}
+  .inside-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:14px;}
+  .inside-title{font-size:13px;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;}
+  .inside-src{font-size:13px;color:var(--text-mute);}
+  .inside-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+  .inside-item{display:block;color:inherit;}
+  .inside-item img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);transition:transform .15s ease;}
+  .inside-item:hover img{transform:translateY(-2px);}
+  .inside-item span{display:block;font-size:13.5px;color:var(--text-dim);margin-top:8px;line-height:1.4;}
+
   /* PROOF WINDOW CARD */
   .window-card{
     max-width:760px;margin:0 auto;background:var(--cream);border-radius:16px;overflow:hidden;
@@ -212,6 +222,8 @@
     .price-cols{grid-template-columns:1fr;}
     .hero h1{font-size:38px;}
     .window-row{flex-direction:column;align-items:flex-start;gap:8px;}
+    .inside-grid{grid-template-columns:1fr;}
+    .inside-head{flex-direction:column;gap:2px;}
     .navlinks{display:none;}
     .photo-panel-section blockquote{font-size:22px;}
   }
@@ -242,6 +254,15 @@
       <div class="hero-ctas">
         <a class="btn btn-accent" href="#pricing">See core package</a>
         <a class="btn btn-cream" href="#proof">Watch example edits</a>
+      </div>
+
+      <div class="inside-edit">
+        <div class="inside-head"><span class="inside-title">Inside the edit</span><span class="inside-src">From Egor Howell's weekly series</span></div>
+        <div class="inside-grid">
+          <a class="inside-item" href="https://www.youtube.com/watch?v=crQap_g9zfA&amp;t=680s" target="_blank" rel="noopener"><img src="egor-p2m.jpg" width="1280" height="720" alt="Step five of a nine-step ML system design framework, shown as an animated card beside Egor"><span>A framework, built step by step as he says it</span></a>
+          <a class="inside-item" href="https://www.youtube.com/watch?v=Fhb2gpw0oXA&amp;t=51s" target="_blank" rel="noopener"><img src="egor-stat.jpg" width="1280" height="720" alt="Two key numbers, 55+ professionals helped and salaries reaching $340K, beside Egor"><span>Key numbers, held on screen</span></a>
+          <a class="inside-item" href="https://www.youtube.com/watch?v=Fhb2gpw0oXA&amp;t=42s" target="_blank" rel="noopener"><img src="egor-logos.jpg" width="1280" height="720" alt="A 6 figure offers card with company logos, beside Egor"><span>Proof points, in the order he names them</span></a>
+        </div>
       </div>
 
       <div class="window-card" id="proof">
