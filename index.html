@@ -128,7 +128,11 @@
     text-decoration:none;color:inherit;
   }
   .window-row:first-of-type{border-top:none;}
-  .window-foot{font-size:13px;color:var(--text-dim);padding:14px 0 12px;border-top:1px solid var(--line);}
+  .window-foot{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);margin:0 -28px -8px;background:var(--bg-soft);}
+  .foot-stat{display:flex;align-items:center;gap:14px;padding:18px 28px;}
+  .foot-stat + .foot-stat{border-left:1px solid var(--line);}
+  .foot-stat strong{font-size:26px;font-weight:800;letter-spacing:-0.02em;color:var(--accent);line-height:1;}
+  .foot-stat span{font-size:13px;line-height:1.35;color:var(--text-dim);}
   .window-row-left{display:flex;flex-direction:column;gap:3px;}
   .window-row-label{font-size:12.5px;color:var(--text-mute);}
   .window-row-value{font-size:15px;font-weight:700;color:var(--text);transition:color .15s ease;}
@@ -242,6 +246,9 @@
     h2,.about h2,.contact-panel h2{font-size:34px;}
     .window-row{flex-direction:column;align-items:flex-start;gap:8px;}
     .inside-grid{grid-template-columns:1fr;}
+    .window-foot{grid-template-columns:1fr;}
+    .foot-stat + .foot-stat{border-left:none;border-top:1px solid var(--line);}
+    .foot-stat{padding:16px 28px;}
     .inside-head{flex-direction:column;gap:2px;}
     .navlinks{display:none;}
     .photo-panel-section blockquote{font-size:32px;}
@@ -289,7 +296,7 @@
           <span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span>
         </div>
         <div class="window-body">
-          <div class="window-eyebrow">Proof of edits (sample)</div>
+          <div class="window-eyebrow">Proof of edits (portfolio)</div>
           <a class="window-row" href="https://www.youtube.com/watch?v=Fhb2gpw0oXA" target="_blank" rel="noopener">
             <div class="window-row-left">
               <div class="window-row-label">Egor Howell · Data science careers</div>
@@ -323,7 +330,10 @@
               <span class="window-chevron">›</span>
             </div>
           </a>
-          <div class="window-foot">13 videos delivered for Zen · A weekly series for Egor</div>
+          <div class="window-foot">
+            <div class="foot-stat"><strong>13</strong><span>videos delivered<br>for Zen van Riel</span></div>
+            <div class="foot-stat"><strong>Weekly</strong><span>ongoing series<br>for Egor Howell</span></div>
+          </div>
         </div>
       </div>
     </div>
