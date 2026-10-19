@@ -132,7 +132,9 @@
   .foot-stat{display:flex;align-items:center;gap:14px;padding:18px 28px;}
   .foot-stat + .foot-stat{border-left:1px solid var(--line);}
   .foot-stat strong{font-size:26px;font-weight:800;letter-spacing:-0.02em;color:var(--accent);line-height:1;}
-  .foot-stat span{font-size:13px;line-height:1.35;color:var(--text-dim);}
+  .foot-stat span{display:flex;flex-direction:column;gap:2px;line-height:1.25;}
+  .foot-stat b{font-size:14px;font-weight:600;color:var(--text);}
+  .foot-stat em{font-size:13px;font-style:normal;color:var(--text-mute);}
   .window-row-left{display:flex;flex-direction:column;gap:3px;}
   .window-row-label{font-size:12.5px;color:var(--text-mute);}
   .window-row-value{font-size:15px;font-weight:700;color:var(--text);transition:color .15s ease;}
@@ -176,7 +178,7 @@
   .plan-name{font-size:12px;color:var(--accent);font-weight:600;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.04em;}
   .price-block h3{font-size:26px;font-weight:700;letter-spacing:-0.02em;margin-bottom:18px;}
   .price-amount{font-size:34px;font-weight:700;line-height:1.1;}
-  .price-sub{font-size:12px;color:var(--text-mute);margin:6px 0 22px;}
+  .price-sub{font-size:14px;color:var(--text-dim);margin:6px 0 22px;}
   .check{color:var(--accent);flex-shrink:0;font-weight:700;}
   .feature-list{list-style:none;flex:1;margin-bottom:22px;}
   .feature-list li{
@@ -331,8 +333,8 @@
             </div>
           </a>
           <div class="window-foot">
-            <div class="foot-stat"><strong>13</strong><span>videos delivered<br>for Zen van Riel</span></div>
-            <div class="foot-stat"><strong>Weekly</strong><span>ongoing series<br>for Egor Howell</span></div>
+            <div class="foot-stat"><strong>13</strong><span><b>Videos delivered</b><em>Zen van Riel</em></span></div>
+            <div class="foot-stat"><strong>Weekly</strong><span><b>Ongoing series</b><em>Egor Howell</em></span></div>
           </div>
         </div>
       </div>
@@ -381,7 +383,7 @@
       <div class="price-block">
         <div class="plan-name">Core package</div>
         <h3>4-video retainer</h3>
-        <div class="price-sub" style="margin-top:-10px;">Structure-first long-form editing, built around your channel and your business. Retainer-based monthly pricing, discussed on a first call so it fits your posting cycle and goals.</div>
+        <div class="price-sub" style="margin-top:-10px;">Long-form edits on your posting cycle, priced monthly.</div>
         <ul class="feature-list">
           <li><span class="check">✓</span>4 structure-first long-form edits per month</li>
           <li><span class="check">✓</span>Animated explainer graphics for technical concepts</li>
@@ -393,12 +395,12 @@
       <div class="price-block">
         <div class="plan-name">Every retainer includes</div>
         <h3>Channel Blueprint</h3>
-        <div class="price-sub" style="margin-top:-10px;">The foundation built once, then applied to every edit after.</div>
+        <div class="price-sub" style="margin-top:-10px;">Your foundation, built once and applied to every edit.</div>
         <ul class="feature-list">
-          <li><span class="check">✓</span>Visual identity set once: colors, logo, intro and outro, lower thirds, and the graphics template every explainer is built from</li>
-          <li><span class="check">✓</span>Topic, title, and content plan built from your niche</li>
-          <li><span class="check">✓</span>AI-assisted title and research workflow built into your channel</li>
-          <li><span class="check">✓</span>Quarterly strategy reviews, including a personal AI workflow audit</li>
+          <li><span class="check">✓</span>Visual identity: colors, logo, intro, outro, lower thirds</li>
+          <li><span class="check">✓</span>A graphics template every explainer is built from</li>
+          <li><span class="check">✓</span>AI-assisted title and research workflow</li>
+          <li><span class="check">✓</span>Quarterly strategy review and AI workflow audit</li>
         </ul>
         <a class="btn btn-accent" href="#faq" style="width:100%;text-align:center;">Still have questions?</a>
       </div>
