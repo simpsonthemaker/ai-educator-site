@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Hands-on Claude training and coaching for teams, from first prompts to agent workflows, built around the work your people already do.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://davidstephensimpson.com/teams">
+<meta property="og:title" content="Sidney's Catalogue · Claude Training for Teams">
+<meta property="og:description" content="Hands-on Claude training for teams, from first prompts to agent workflows.">
+<meta property="og:image" content="https://davidstephensimpson.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon-64.png">
+<link rel="apple-touch-icon" href="sc-logo-512.png">
+<title>Sidney's Catalogue · Claude Training for Teams</title>
+<style>
+  :root{
+    --bg:#FAFAF7;
+    --bg-soft:#F3F2EE;
+    --line:rgba(0,0,0,0.08);
+    --text:#1A1A18;
+    --text-dim:#5A5A55;
+    --text-mute:#8A8A82;
+    --accent:#4A7FB8;
+    --accent-dark:#2E5788;
+    --accent-light:#E7EDF6;
+    --accent-text-on-dark:#A9C3E3;
+    --cream:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  em{font-style:normal;color:var(--accent);font-family:inherit;}
+  .hero h1 em{font-style:normal;font-family:inherit;display:block;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  a{color:inherit;text-decoration:none;}
+
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,250,247,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1120px;margin:0 auto;}
+  .logo{font-size:16px;font-weight:700;letter-spacing:-0.01em;display:flex;align-items:center;gap:8px;}
+  .logo .mark{width:34px;height:34px;border-radius:8px;display:block;}
+  .navlinks{display:flex;gap:30px;align-items:center;font-size:14px;color:var(--text-dim);}
+  .navlinks a:hover{color:var(--text);}
+  .btn{
+    display:inline-block;padding:11px 22px;border-radius:100px;
+    font-size:14px;font-weight:600;white-space:nowrap;border:1px solid transparent;
+  }
+  .btn-primary{background:var(--text);color:#fff;border-radius:8px;}
+  .btn-primary:hover{opacity:0.85;}
+  .btn-accent{background:var(--text);color:#fff;border-radius:8px;}
+  .btn-accent:hover{opacity:0.88;}
+  .btn-outline{background:var(--accent-light);color:var(--accent);}
+  .btn-outline:hover{background:#dbe5f2;}
+  .btn-cream{background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:8px;}
+  .btn-cream:hover{background:var(--accent-light);}
+
+  .eyebrow-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;color:var(--text-dim);
+    border:1px solid var(--line);border-radius:100px;padding:6px 14px 6px 6px;
+    margin-bottom:26px;
+  }
+  .eyebrow-pill .ico{
+    width:22px;height:22px;border-radius:6px;background:var(--accent-light);
+    display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:12px;font-weight:700;
+  }
+  .eyebrow-pill .ico-img{width:22px;height:22px;border-radius:6px;display:block;}
+  .eyebrow-pill.on-photo{color:#f4e6d0;border-color:rgba(255,255,255,0.3);}
+  .eyebrow-pill.on-photo .ico{background:rgba(255,255,255,0.18);color:#fbe6c4;}
+
+  /* HERO — warm photo backdrop */
+  .hero-photo{
+    position:relative;overflow:hidden;
+    background:var(--bg);
+  }
+  .hero{padding:96px 0 64px;text-align:center;position:relative;z-index:1;}
+  .hero h1{
+    font-size:72px;line-height:1.04;letter-spacing:-0.025em;
+    max-width:1100px;margin:0 auto 26px;font-weight:800;color:var(--text);
+  }
+  .hero p.lead{
+    font-size:20px;color:var(--text-dim);max-width:560px;margin:0 auto 34px;
+  }
+  .hero-ctas{display:flex;gap:14px;justify-content:center;margin-bottom:64px;flex-wrap:wrap;}
+
+  .inside-edit{max-width:960px;margin:0 auto 56px;text-align:left;}
+  .inside-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:14px;}
+  .inside-title{font-size:13px;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;}
+  .inside-src{font-size:13px;color:var(--text-mute);}
+  .inside-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+  .inside-item{display:block;color:inherit;}
+  .inside-item img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);box-shadow:0 12px 28px -16px rgba(20,30,50,0.30),0 2px 6px rgba(20,30,50,0.06);transition:transform .15s ease,box-shadow .15s ease;}
+  .inside-item:hover img{transform:translateY(-2px);box-shadow:0 18px 34px -16px rgba(20,30,50,0.36),0 3px 8px rgba(20,30,50,0.08);}
+  .inside-item span{display:block;font-size:13.5px;color:var(--text-dim);margin-top:8px;line-height:1.4;}
+
+  /* PROOF WINDOW CARD */
+  .window-card{
+    max-width:760px;margin:0 auto;background:var(--cream);border-radius:16px;overflow:hidden;
+    text-align:left;border:1px solid var(--line);box-shadow:0 24px 50px -24px rgba(0,0,0,0.18);
+  }
+  .window-titlebar{
+    background:var(--bg-soft);padding:12px 18px;display:flex;gap:6px;border-bottom:1px solid var(--line);
+  }
+  .window-dot{width:10px;height:10px;border-radius:50%;background:#D8D7D0;}
+  .window-body{padding:6px 28px 8px;}
+  .window-eyebrow{
+    font-size:12px;color:var(--text-mute);text-transform:uppercase;letter-spacing:0.06em;padding:18px 0 4px;
+  }
+  .window-row{
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+    padding:18px 0;border-top:1px solid var(--line);
+    text-decoration:none;color:inherit;
+  }
+  .window-row:first-of-type{border-top:none;}
+  .window-foot{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);margin:0 -28px -8px;background:var(--bg-soft);}
+  .foot-stat{display:flex;align-items:center;gap:14px;padding:18px 28px;}
+  .foot-stat + .foot-stat{border-left:1px solid var(--line);}
+  .foot-stat strong{font-size:26px;font-weight:800;letter-spacing:-0.02em;color:var(--accent);line-height:1;}
+  .foot-stat span{display:flex;flex-direction:column;gap:2px;line-height:1.25;}
+  .foot-stat b{font-size:14px;font-weight:600;color:var(--text);}
+  .foot-stat em{font-size:13px;font-style:normal;color:var(--text-mute);}
+  .window-row-left{display:flex;flex-direction:column;gap:3px;}
+  .window-row-label{font-size:12.5px;color:var(--text-mute);}
+  .window-row-value{font-size:15px;font-weight:700;color:var(--text);transition:color .15s ease;}
+  .window-row:hover .window-row-value{color:var(--accent);}
+  .window-row-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+  .window-pill{
+    font-size:12px;font-weight:700;padding:6px 14px;border-radius:100px;white-space:nowrap;flex-shrink:0;
+  }
+  .window-pill.live{background:var(--accent-light);color:var(--accent-dark);}
+  .window-pill.dark{background:var(--text);color:#fff;}
+  .window-chevron{color:var(--text-mute);font-size:17px;line-height:1;transition:color .15s ease, transform .15s ease;}
+  .window-row:hover .window-chevron{color:var(--accent);transform:translateX(2px);}
+
+  section{padding:88px 0;}
+  .section-white{background:var(--bg);}
+  .section-soft{background:var(--bg-soft);}
+  .eyebrow{font-size:13px;color:var(--text-mute);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;}
+  h2{font-size:48px;line-height:1.08;font-weight:700;letter-spacing:-0.03em;margin-bottom:16px;}
+  h2,blockquote,.hero h1{text-wrap:balance;}
+  p,.faq-a{text-wrap:pretty;}
+  .section-head{text-align:center;max-width:640px;margin:0 auto 52px;}
+  .section-head p{color:var(--text-dim);font-size:16px;}
+
+  /* HOW IT WORKS */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .step{background:var(--cream);border:1px solid var(--line);border-radius:16px;padding:26px 22px;}
+  .step .num{
+    font-size:13px;color:var(--accent);font-weight:700;margin-bottom:16px;
+    display:inline-block;border:1px solid var(--accent-light);background:var(--accent-light);border-radius:50%;
+    width:30px;height:30px;text-align:center;line-height:28px;
+  }
+  .step h3{font-size:16px;font-weight:700;margin-bottom:8px;}
+  .step p{font-size:13.5px;color:var(--text-dim);}
+
+  /* PRICING */
+  .price-cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch;}
+  .price-block{
+    background:var(--cream);border:1px solid var(--line);border-radius:20px;padding:34px 36px;
+    display:flex;flex-direction:column;
+  }
+  .plan-name{font-size:12px;color:var(--accent);font-weight:600;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.04em;}
+  .price-block h3{font-size:26px;font-weight:700;letter-spacing:-0.02em;margin-bottom:18px;}
+  .price-amount{font-size:34px;font-weight:700;line-height:1.1;}
+  .price-sub{font-size:14px;color:var(--text-dim);margin:6px 0 22px;}
+  .check{color:var(--accent);flex-shrink:0;font-weight:700;}
+  .feature-list{list-style:none;flex:1;margin-bottom:22px;}
+  .feature-list li{
+    font-size:13.5px;color:var(--text-dim);display:flex;gap:8px;align-items:flex-start;
+    padding:9px 0;border-top:1px solid var(--line);
+  }
+  .feature-list li:first-child{border-top:none;}
+
+  /* PHOTO PANEL (testimonial) — full-bleed real photo, black overlay */
+  .photo-panel-full{
+    position:relative;overflow:hidden;
+    background-image:
+      linear-gradient(165deg, rgba(8,16,32,0.62) 0%, rgba(8,16,32,0.70) 55%, rgba(8,16,32,0.82) 100%),
+      url("why-wafer.jpg");
+    background-size:cover;
+    background-position:center;
+  }
+  .photo-panel-section{padding:104px 0;text-align:center;color:#fff;position:relative;z-index:1;}
+  .photo-panel-section .eyebrow{color:var(--accent-text-on-dark);}
+  .photo-panel-section blockquote{
+    font-size:28px;line-height:1.4;font-weight:600;max-width:680px;margin:0 auto 22px;
+    font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;font-size:44px;line-height:1.2;letter-spacing:-0.005em;
+  }
+  .photo-panel-section .quote-by{font-size:14px;color:#D0D0CA;}
+
+  /* FAQ */
+  .faq-list{border-bottom:1px solid var(--line);}
+  .faq-item{border-top:1px solid var(--line);}
+  .faq-q{
+    list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:24px;
+    padding:26px 4px;font-size:19px;font-weight:500;color:var(--text);
+  }
+  .faq-q::-webkit-details-marker{display:none;}
+  .faq-q::after{
+    content:"";flex-shrink:0;width:9px;height:9px;margin-right:6px;
+    border-right:2px solid var(--text-dim);border-bottom:2px solid var(--text-dim);
+    transform:translateY(-3px) rotate(45deg);transition:transform .2s ease;
+  }
+  .faq-item[open] .faq-q::after{transform:translateY(2px) rotate(-135deg);}
+  .faq-q:hover{color:var(--accent-dark);}
+  .faq-a{font-size:15px;color:var(--text-dim);max-width:720px;padding:0 4px 26px;}
+
+  /* ABOUT */
+  .about{text-align:center;}
+  .about-name{font-size:28px;font-weight:800;margin-bottom:10px;}
+  .about h2{font-size:48px;margin-bottom:14px;}
+  .about p{color:var(--text-dim);font-size:16px;max-width:640px;margin:0 auto 16px;}
+  .about .note{font-size:13px;color:var(--text-mute);margin-top:22px;}
+
+  /* CONTACT */
+  .contact-panel{
+    background:var(--bg-soft);border-radius:24px;padding:56px 40px;text-align:center;
+  }
+  .contact-panel .eyebrow{font-size:16px;font-weight:700;color:var(--accent);letter-spacing:0.06em;}
+  .contact-panel h2{font-size:48px;margin-bottom:14px;}
+  .contact-panel p{color:var(--text-dim);font-size:15px;max-width:520px;margin:0 auto 26px;}
+  .contact-email{font-size:20px;font-weight:700;color:var(--accent);}
+
+  footer{padding:52px 0;background:var(--bg);border-top:1px solid var(--line);}
+  .footer-row{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:20px;}
+  .copyright{font-size:14px;color:var(--text-mute);text-align:center;}
+
+  @media (max-width:760px){
+    .steps{grid-template-columns:1fr 1fr;}
+    .price-cols{grid-template-columns:1fr;}
+    .hero h1{font-size:38px;letter-spacing:-0.02em;}
+    h2,.about h2,.contact-panel h2{font-size:34px;}
+    .window-row{flex-direction:column;align-items:flex-start;gap:8px;}
+    .inside-grid{grid-template-columns:1fr;}
+    .window-foot{grid-template-columns:1fr;}
+    .foot-stat + .foot-stat{border-left:none;border-top:1px solid var(--line);}
+    .foot-stat{padding:16px 28px;}
+    .inside-head{flex-direction:column;gap:2px;}
+    .navlinks{display:none;}
+    .photo-panel-section blockquote{font-size:32px;}
+  }
+
+  .levels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
+  .level{background:var(--cream);border:1px solid var(--line);border-radius:18px;padding:30px 28px;display:flex;flex-direction:column;}
+  .level .tag{font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+  .level h3{font-size:24px;font-weight:700;letter-spacing:-0.02em;margin-bottom:8px;}
+  .level p{font-size:14px;color:var(--text-dim);margin-bottom:16px;}
+  .formats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
+  .format{border-top:3px solid var(--accent);padding-top:18px;}
+  .format h3{font-size:20px;font-weight:700;letter-spacing:-0.02em;margin-bottom:6px;}
+  .format .meta{font-size:13px;color:var(--accent);font-weight:600;margin-bottom:10px;}
+  .format p{font-size:14px;color:var(--text-dim);}
+  .creds{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:880px;margin:0 auto;}
+  .cred{background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:22px 24px;}
+  .cred strong{display:block;font-size:17px;font-weight:700;letter-spacing:-0.01em;margin-bottom:4px;}
+  .cred span{font-size:14px;color:var(--text-dim);}
+  .ph{border:1.5px dashed #D9A03F;background:#FFF6E6;color:#8A5A12;border-radius:10px;padding:10px 14px;font-size:13px;}
+  .mock-banner{background:#1A1A18;color:#fff;text-align:center;font-size:13px;padding:8px 16px;letter-spacing:0.02em;}
+  @media (max-width:760px){.levels,.formats,.creds{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a class="logo" href="/" aria-label="Sidney's Catalogue, home"><img class="mark" src="sc-logo-128.png" width="34" height="34" alt="">Sidney's Catalogue</a>
+    <div class="navlinks">
+      <a href="#levels">Program</a>
+      <a href="#how">How it works</a>
+      <a href="#formats">Formats</a>
+      <a href="#faq">FAQ</a>
+      <a href="#about">About</a>
+      <a href="/">Video editing</a>
+    </div>
+    <a class="btn btn-primary" href="https://calendly.com/sidneyscatalogue/group" target="_blank" rel="noopener">Book a Call</a>
+  </nav>
+</header>
+
+<div class="hero-photo">
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow-pill"><img class="ico-img" src="/sc-logo-128.png" width="22" height="22" alt="">Claude for teams</div>
+      <h1>Claude training for teams <em>that ship real work.</em></h1>
+      <p class="lead">Hands-on Claude coaching for non-technical teams, from first prompts to agent workflows. Built around the work your people already do, so it sticks after the session ends.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-accent" href="https://calendly.com/sidneyscatalogue/group" target="_blank" rel="noopener">Book a Call</a>
+        <a class="btn btn-cream" href="#levels">See the program</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section id="levels" class="section-soft">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow-pill" style="margin:0 auto 20px;"><span class="ico">01</span>The program</div>
+      <h2>Three levels, each one usable on day one.</h2>
+    </div>
+    <div class="levels">
+      <div class="level">
+        <div class="tag">Level 1</div>
+        <h3>Foundations</h3>
+        <p>Everyone using Claude well, and safely.</p>
+        <ul class="feature-list">
+          <li><span class="check">✓</span>Prompting that gets usable first drafts</li>
+          <li><span class="check">✓</span>What to share, and what never to paste</li>
+          <li><span class="check">✓</span>Checking output before it goes anywhere</li>
+        </ul>
+      </div>
+      <div class="level">
+        <div class="tag">Level 2</div>
+        <h3>Role-based</h3>
+        <p>Claude applied to each person's real job.</p>
+        <ul class="feature-list">
+          <li><span class="check">✓</span>Projects set up per team and workflow</li>
+          <li><span class="check">✓</span>Artifacts for reports, decks and tools</li>
+          <li><span class="check">✓</span>Reusable instructions the team shares</li>
+        </ul>
+      </div>
+      <div class="level">
+        <div class="tag">Level 3</div>
+        <h3>Advanced</h3>
+        <p>Workflows that run with less hand-holding.</p>
+        <ul class="feature-list">
+          <li><span class="check">✓</span>Agent workflows for repeated tasks</li>
+          <li><span class="check">✓</span>Skills that package how your team works</li>
+          <li><span class="check">✓</span>Claude Code for the technically curious</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="section-white">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">How it works</div>
+      <h2>Start from the work, not the tool.</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="num">1</span><h3>Map</h3><p>Short interviews to find the repetitive, high-volume work worth handing to Claude first.</p></div>
+      <div class="step"><span class="num">2</span><h3>Build</h3><p>Workflows and assistants built with the team, on their own documents, so they own them.</p></div>
+      <div class="step"><span class="num">3</span><h3>Coach</h3><p>Hands-on sessions and office hours while people use it on live work, not exercises.</p></div>
+      <div class="step"><span class="num">4</span><h3>Measure</h3><p>Before and after on the tasks you chose: time per task, adoption, what stuck.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="formats" class="section-soft">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Formats</div>
+      <h2>Pick the depth your team needs.</h2>
+    </div>
+    <div class="formats">
+      <div class="format"><h3>Live workshop</h3><p>Level 1 for the whole team, with live demos on your own use cases.</p></div>
+      <div class="format"><h3>Team program</h3><p>All three levels, a workflow built per role, and weekly coaching.</p></div>
+      <div class="format"><h3>Leader coaching</h3><p>For managers who need to lead adoption, not just use the tool.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="photo-panel-full">
+  <section class="photo-panel-section">
+    <div class="wrap">
+      <div class="eyebrow">The approach</div>
+      <blockquote>“People don’t adopt a tool. They adopt a faster way to do the job they already have.”</blockquote>
+      <div class="quote-by">David Simpson</div>
+    </div>
+  </section>
+</div>
+
+<section id="about" class="section-white">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Who teaches it</div>
+      <h2>A teacher first, who runs on Claude every day.</h2>
+    </div>
+    <div class="creds">
+      <div class="cred"><strong>14 years teaching at university</strong><span>Film and communication at universities in Kyoto and Osaka, Japan.</span></div>
+      <div class="cred"><strong>Taught executives at Daikin, Murata and Sony</strong><span>Inside major companies, at executive level.</span></div>
+      <div class="cred"><strong>Built and teaches Claude for Realtors</strong><span>Claude training for working professionals who are not technical.</span></div>
+      <div class="cred"><strong>Runs his own business on Claude</strong><span>Claude Code, Skills and Projects behind his editing studio and courses.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section-soft">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Frequently asked</div>
+      <h2>Questions teams ask before booking</h2>
+    </div>
+    <div class="faq-list" style="max-width:760px;margin:0 auto;">
+      <details class="faq-item"><summary class="faq-q">Our team isn't technical. Is that a problem?</summary><div class="faq-a">No. That is who this is built for. Levels 1 and 2 need no technical background, and Level 3 is optional.</div></details>
+      <details class="faq-item"><summary class="faq-q">Which Claude plan do we need?</summary><div class="faq-a">Most teams use Claude Team or Enterprise. If you are still choosing, the first call covers what fits your size and security needs.</div></details>
+      <details class="faq-item"><summary class="faq-q">How do you handle sensitive data?</summary><div class="faq-a">Safe use is part of Level 1, and every session follows your company's own AI and data policy. If you don't have one yet, we start there.</div></details>
+      <details class="faq-item"><summary class="faq-q">Do you build for us or teach us?</summary><div class="faq-a">Both, in that order. Workflows are built with your team, on their work, so they can run and change them after I leave.</div></details>
+      <details class="faq-item"><summary class="faq-q">Remote or on-site?</summary><div class="faq-a">Remote across North America. On-site in Calgary and the surrounding area.</div></details>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section-white">
+  <div class="wrap">
+    <div class="contact-panel">
+      <div class="eyebrow">Contact</div>
+      <h2>Start with one team.</h2>
+      <p>A short call about the work your team repeats every week, and where Claude would save the most time.</p>
+      <a class="contact-email" href="mailto:info@sidneyscatalogue.com">info@sidneyscatalogue.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="copyright">© 2026 Sidney's Catalogue Group. All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>
